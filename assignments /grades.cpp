@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <iomanip>  // For setw and setprecision
 using namespace std;
 
 class Student {
@@ -10,7 +11,7 @@ private:
     vector<double> examMarks;
 
 public:
-    // Constructor to initialize a student with name and ID
+
     Student(string name, int studentID, vector<double> assignments, vector<double> exams) {
         this->name = name;
         this->studentID = studentID;
@@ -18,35 +19,30 @@ public:
         this->examMarks = exams;
     }
 
-    // Function to calculate final grade
     double calculateFinalGrade() const {
-        // Calculate assignment average (40%)
+
         double assignmentAvg = 0;
         for (double mark : assignmentMarks) {
             assignmentAvg += mark;
         }
         assignmentAvg = assignmentAvg / assignmentMarks.size();
 
-        // Calculate exam average (60%)
         double examAvg = 0;
         for (double mark : examMarks) {
             examAvg += mark;
         }
         examAvg = examAvg / examMarks.size();
 
-        // Calculate final grade as weighted average
         double finalGrade = (assignmentAvg * 0.4) + (examAvg * 0.6);
         return finalGrade;
     }
 
-    // Function to display student's details and final grade
     void display() const {
-        cout << "Student: " << name << " (ID: " << studentID << ")\n";
-        cout << "Final Grade: " << calculateFinalGrade() << "%\n";
+        cout << setw(20) << left << name << setw(10) << studentID;
+        cout << fixed << setprecision(2) << setw(10) << calculateFinalGrade() << "%" << endl;
     }
 };
 
-// Function to input data for a student
 Student inputStudentData() {
     string name;
     int studentID;
@@ -58,14 +54,12 @@ Student inputStudentData() {
     cout << "Enter student ID: ";
     cin >> studentID;
 
-    // Input assignment marks
     cout << "Enter marks for 3 assignments (out of 100):\n";
     for (int i = 0; i < 3; ++i) {
         cout << "Assignment " << (i + 1) << ": ";
         cin >> assignments[i];
     }
 
-    // Input exam marks
     cout << "Enter marks for 2 exams (out of 100):\n";
     for (int i = 0; i < 2; ++i) {
         cout << "Exam " << (i + 1) << ": ";
@@ -75,11 +69,12 @@ Student inputStudentData() {
     return Student(name, studentID, assignments, exams);
 }
 
-// Function to display all students' details and final grades
 void displayStudents(const vector<Student>& students) {
+    cout << setw(20) << left << "Name" << setw(10) << "ID" << setw(10) << "Final Grade" << endl;
+    cout << "---------------------------------------------" << endl;
+
     for (const auto& student : students) {
         student.display();
-        cout << "---------------------\n";
     }
 }
 
@@ -90,13 +85,11 @@ int main() {
     cout << "Enter the number of students: ";
     cin >> numberOfStudents;
 
-    // Input data for each student
     for (int i = 0; i < numberOfStudents; ++i) {
         cout << "\nEntering data for student " << (i + 1) << ":\n";
         students.push_back(inputStudentData());
     }
 
-    // Display final grades for all students
     cout << "\nFinal Grades for All Students:\n";
     displayStudents(students);
 

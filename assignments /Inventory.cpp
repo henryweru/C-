@@ -9,36 +9,31 @@ private:
     int quantity;
 
 public:
-    // Constructor to initialize a new product
+
     Product(string name, double price, int quantity) {
         this->name = name;
         this->price = price;
         this->quantity = quantity;
     }
 
-    // Function to update stock quantity
     void updateStock(int newQuantity) {
         quantity = newQuantity;
     }
 
-    // Function to display product details (marked as const)
     void display() const {
         cout << "Product: " << name << ", Price: $" << price 
              << ", Quantity: " << quantity << endl;
     }
 
-    // Function to return product name (marked as const)
     string getName() const {
         return name;
     }
 
-    // Function to return product quantity (marked as const)
     int getQuantity() const {
         return quantity;
     }
 };
 
-// Function to add a new product
 void addProduct(vector<Product>& inventory) {
     string name;
     double price;
@@ -57,7 +52,6 @@ void addProduct(vector<Product>& inventory) {
     cout << "Product added successfully!\n";
 }
 
-// Function to update stock of an existing product
 void updateProductStock(vector<Product>& inventory) {
     string productName;
     int newQuantity;
@@ -78,7 +72,6 @@ void updateProductStock(vector<Product>& inventory) {
     cout << "Product not found in inventory.\n";
 }
 
-// Function to display all products
 void displayInventory(const vector<Product>& inventory) {
     cout << "Inventory Report:\n";
     for (const auto& product : inventory) {
