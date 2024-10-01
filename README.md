@@ -8,4 +8,4 @@ Assignment
 - The display() function outputs the product's details.
 
 ### Running Case 1 
-run on your terminal *g++ Inventory.cpp -o Inventory*
+run on your terminal 'g++ Inventory.cpp -o Inventory'
